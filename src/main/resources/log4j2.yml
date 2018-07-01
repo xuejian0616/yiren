@@ -1,0 +1,93 @@
+Configuration:
+  status: warn
+  Properties: # 定义全局变量
+    Property: # 缺省配置（用于开发环境）。其他环境需要在VM参数中指定，如下：
+      - name: server.port
+          value: 24000
+  Appenders:
+    Console:  #输出到控制台
+      name: Console
+      target: SYSTEM_OUT
+      PatternLayout:
+        pattern: "%date %level %class %method :%t: %msg%n"
+    RollingFile : # 按天输出错误信息到文件
+      - name: RollingFileError
+        thresholdFilter:
+          level: error
+          onMatch: ACCEPT
+          onMismatch: DENY
+        fileName: "logs/24000/error.log"
+        filePattern: "logs/24000/error-%d{yyyy-MM-dd}.log"
+        PatternLayout:
+          pattern: "%d{yyyy-MM-dd HH:mm:ss,SSS}:%4p %t (%F) - %m%n"
+        DefaultRolloverStrategy:
+                  max: 500
+        Policies:
+          TimeBasedTriggeringPolicy:
+            - modulate: true
+              interval: 1
+      - name: accesslog
+        thresholdFilter:
+          level: debug
+          onMatch: ACCEPT
+          onMismatch: DENY
+        fileName: "logs/24000/access.log"
+        filePattern: "logs/24000/access-%d{yyyy-MM-dd}.log"
+        PatternLayout:
+          pattern: "%m%n"
+        Policies:
+          TimeBasedTriggeringPolicy:
+            - modulate: true
+              interval: 1
+      - name: RollingFileInfo
+        thresholdFilter:
+          level: debug
+          onMatch: ACCEPT
+          onMismatch: DENY
+        fileName: "logs/24000/info.log"
+        filePattern: "logs/24000/info-%d{yyyy-MM-dd}.log"
+        PatternLayout:
+          pattern: "%d{yyyy-MM-dd HH:mm:ss,SSS}:%4p %t (%F) - %m%n"
+        Policies:
+          TimeBasedTriggeringPolicy:
+            - modulate: true
+              interval: 1
+  Loggers:
+    Root:
+      level: info
+      AppenderRef:
+        - ref: Console
+        - ref: RollingFileError
+        - ref: RollingFileInfo
+    Logger:
+      - name: org.hibernate.SQL
+        additivity: true
+        level: debug
+        AppenderRef:
+          - ref: Console
+      - name: org.hibernate.type.descriptor
+        additivity: true
+        level: debug
+        AppenderRef:
+          - ref: Console
+      - name: java.sql
+        additivity: true
+        level: debug
+        AppenderRef:
+          - ref: RollingFileInfo
+      - name: springfox.documentation
+        additivity: false
+        level: warn
+        AppenderRef:
+          - ref: Console
+      - name: cn.yirenzhuang.mapper
+        additivity: true
+        level: debug
+        AppenderRef:
+          - ref: Console
+          - ref: RollingFileInfo
+      - name: hm_access_log
+        additivity: false
+        level: info
+        AppenderRef:
+          - ref: accesslog

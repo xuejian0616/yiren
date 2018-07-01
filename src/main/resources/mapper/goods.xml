@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper  namespace="cn.yirenzhuang.mapper.GoodsMapper">
+
+
+    <!--获取商品三级分类下的商品列表-->
+    <select id="getGoodsByCategory" resultType="cn.yirenzhuang.model.VO.GoodsListVO">
+        SELECT id,name,title,old_price oldPrice,price,discount,unit,sales_num salesNum,stock_num stockNum,small_pic smallPic FROM tb_goods
+        where status = 1 and stock_num > 0 and third_cid = #{categroyId} order by sales_num desc
+    </select>
+</mapper>
