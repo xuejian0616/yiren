@@ -12,7 +12,7 @@ import java.util.Date;
 public class TBGoodsDesc {
   @ApiModelProperty(value = "商品ID")
   @Column(name = "goods_id")
-  private int goodsId;
+  private Integer goodsId;
   @ApiModelProperty(value = "商品详情")
   @Column(name = "goods_desc")
   private String goodsDesc;

@@ -15,7 +15,7 @@ public class TBOrder {
   private String id;
   @ApiModelProperty(value = "用户id")
   @Column(name = "user_id")
-  private int userId;
+  private Integer userId;
   @ApiModelProperty(value = "实付金额。精确到2位小数;单位:元。如:200.07，表示:200元7分")
   @Column(name = "payment")
   private String payment;
@@ -24,13 +24,13 @@ public class TBOrder {
   private String discount;
   @ApiModelProperty(value = "支付类型，0、现金，1、微信支付，2、支付宝支付")
   @Column(name = "payment_type")
-  private int paymentType;
+  private Integer paymentType;
   @ApiModelProperty(value = "邮费。精确到2位小数;单位:元。如:200.07，表示:200元7分")
   @Column(name = "post_fee")
   private String postFee;
   @ApiModelProperty(value = "状态：1、未付款，2、已付款，3、未发货，4、已发货，5、交易成功，6、交易关闭")
   @Column(name = "status")
-  private int status;      
+  private Integer status;      
   @ApiModelProperty(value = "订单创建时间")
   @Column(name = "create_time")
   private Date createTime;
@@ -51,10 +51,10 @@ public class TBOrder {
   private Date closeTime;
   @ApiModelProperty(value = "发货类型")
   @Column(name = "delivery_type")
-  private int deliveryType;
+  private Integer deliveryType;
   @ApiModelProperty(value = "收货地址")
   @Column(name = "address_id")
-  private int addressId;
+  private Integer addressId;
   @ApiModelProperty(value = "物流名称")
   @Column(name = "shipping_name")
   private String shippingName;
@@ -69,5 +69,5 @@ public class TBOrder {
   private String buyerNick;
   @ApiModelProperty(value = "买家是否已经评价")
   @Column(name = "buyer_rate")
-  private int buyerRate;
+  private Integer buyerRate;
 }

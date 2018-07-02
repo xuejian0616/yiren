@@ -11,7 +11,7 @@ import java.util.Date;
 @Data
 public class TBUserWxinfo {
   @Column(name = "id")
-  private int id;
+  private Integer id;
   @ApiModelProperty(value = "openId")
   @Column(name = "open_id")
   private String openId;

@@ -11,7 +11,7 @@ import java.util.Date;
 @Data
 public class TBUser {
   @Column(name = "id")
-  private int id;
+  private Integer id;
   @ApiModelProperty(value = "用户名")
   @Column(name = "username")
   private String userName;
@@ -20,7 +20,7 @@ public class TBUser {
   private String password;
   @ApiModelProperty(value = "微信id")
   @Column(name = "wxinfo_id")
-  private int wxinfoId;
+  private Integer wxinfoId;
   @ApiModelProperty(value = "注册手机号")
   @Column(name = "phone")
   private String phone;

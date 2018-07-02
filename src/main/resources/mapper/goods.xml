@@ -2,11 +2,61 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper  namespace="cn.yirenzhuang.mapper.GoodsMapper">
-
+    <sql id="table_columns">
+        id ,
+        name ,
+        title ,
+        old_price as oldPrice,
+        price,
+        lower_price as lowerPrice,
+        discount,
+        unit,
+        sales_num as salesNum,
+        stock_num as stockNum,
+        barcode,
+        small_pic as smallPic,
+        pic_one as picOne,
+        pic_two as picTwo,
+        pic_three as picThree,
+        pic_four as picFour,
+        pic_five as picFive,
+        first_cid as firstCid,
+        sub_cid as subCid,
+        third_cid as thirdCid,
+        status,
+        created,
+        updated
+    </sql>
 
     <!--获取商品三级分类下的商品列表-->
     <select id="getGoodsByCategory" resultType="cn.yirenzhuang.model.VO.GoodsListVO">
-        SELECT id,name,title,old_price oldPrice,price,discount,unit,sales_num salesNum,stock_num stockNum,small_pic smallPic FROM tb_goods
+        SELECT
+        <include refid="table_columns"/>
+        FROM tb_goods
         where status = 1 and stock_num > 0 and third_cid = #{categroyId} order by sales_num desc
+    </select>
+
+    <!--获取商品三级分类下的商品列表-->
+    <select id="getGoodsInfo" resultType="cn.yirenzhuang.model.VO.GoodsVO">
+        SELECT
+        <include refid="table_columns"/>
+        FROM tb_goods
+        where status = 1 and id = #{goodsId}
+    </select>
+
+    <!--获取销量前十的商品列表-->
+    <select id="getSalesGoods" resultType="cn.yirenzhuang.model.VO.GoodsListVO">
+        SELECT
+        <include refid="table_columns"/>
+        FROM tb_goods
+        where status = 1 order by sales_num desc limit 10
+    </select>
+
+    <!--获取最新上架的10商品列表-->
+    <select id="getNewGoods" resultType="cn.yirenzhuang.model.VO.GoodsListVO">
+        SELECT
+        <include refid="table_columns"/>
+        FROM tb_goods
+        where status = 1 order by created desc limit 10
     </select>
 </mapper>

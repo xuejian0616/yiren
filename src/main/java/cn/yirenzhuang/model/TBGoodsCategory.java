@@ -14,10 +14,10 @@ import java.util.List;
 public class TBGoodsCategory {
   @ApiModelProperty(value = "类目ID")
   @Column(name = "id")
-  private int id;
+  private Integer id;
   @ApiModelProperty(value = "父类目ID=0时，代表的是一级的类目")
   @Column(name = "parent_id")
-  private int parentId;
+  private Integer parentId;
   @ApiModelProperty(value = "类目编号")
   @Column(name = "code")
   private String code;
@@ -29,16 +29,16 @@ public class TBGoodsCategory {
   private String image;
   @ApiModelProperty(value = "状态。可选值:1(正常),2(删除)")
   @Column(name = "status")
-  private int status;        
+  private Integer status;        
   @ApiModelProperty(value = "级别")
   @Column(name = "level")
-  private int level;      
+  private Integer level;      
   @ApiModelProperty(value = "排列序号，表示同级类目的展现次序，如数值相等则按名称次序排列。取值范围:大于零的整数")
   @Column(name = "sort_order")
-  private int sortOrder;
+  private Integer sortOrder;
   @ApiModelProperty(value = "该类目是否为父类目，1为true，0为false")
   @Column(name = "is_parent")
-  private int isParent;
+  private Integer isParent;
   @ApiModelProperty(value = "创建时间")
   @Column(name = "created")
   private Date created;

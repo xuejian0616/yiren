@@ -11,10 +11,10 @@ import java.util.Date;
 @Data
 public class TBContent {
   @Column(name = "id")
-  private int id;
+  private Integer id;
   @ApiModelProperty(value = "内容类目ID")
   @Column(name = "category_id")
-  private int categoryId;
+  private Integer categoryId;
   @ApiModelProperty(value = "内容标题")
   @Column(name = "title")
   private String title;
