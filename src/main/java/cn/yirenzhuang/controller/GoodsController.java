@@ -1,6 +1,7 @@
 package cn.yirenzhuang.controller;
 
 import cn.yirenzhuang.model.VO.GoodsListVO;
+import cn.yirenzhuang.model.VO.GoodsSpecListVO;
 import cn.yirenzhuang.model.VO.GoodsVO;
 import cn.yirenzhuang.service.GoodsService;
 import io.swagger.annotations.Api;
@@ -40,6 +41,14 @@ public class GoodsController {
     public GoodsVO getGoodsInfo(@PathVariable int goodsId){
 
         return goodsService.getGoodsInfo(goodsId);
+    }
+
+    @ApiOperation(value = "根据商品id获取商品规格", notes = "根据商品id获取商品规格",httpMethod = "GET")
+    @ApiImplicitParams({@ApiImplicitParam(name = "goodsId", paramType = "query", dataType = "Integer", value = "商品id")})
+    @GetMapping(value = "/getGoodsSpec/{goodsId}")
+    public GoodsSpecListVO getGoodsSpec(@PathVariable int goodsId){
+
+        return goodsService.getGoodsSpec(goodsId);
     }
 
     @ApiOperation(value = "获取销量前十的商品列表", notes = "获取销量前十的商品列表",httpMethod = "GET")

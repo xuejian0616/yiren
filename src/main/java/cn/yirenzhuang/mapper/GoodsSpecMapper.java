@@ -1,9 +1,8 @@
 package cn.yirenzhuang.mapper;
 
 import cn.yirenzhuang.common.mapper.BaseMapper;
-import cn.yirenzhuang.model.TBGoodsParam;
-import cn.yirenzhuang.model.VO.GoodsListVO;
-import cn.yirenzhuang.model.VO.GoodsParamVO;
+import cn.yirenzhuang.model.TBGoodsSpec;
+import cn.yirenzhuang.model.VO.GoodsSpecVO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -15,7 +14,7 @@ import java.util.List;
  * @Date：Created on 2018/7/1 18:30.
  */
 @Repository
-public interface GoodsParamMapper extends BaseMapper<TBGoodsParam> {
+public interface GoodsSpecMapper extends BaseMapper<TBGoodsSpec> {
 
 
     /**
@@ -23,5 +22,5 @@ public interface GoodsParamMapper extends BaseMapper<TBGoodsParam> {
      * @param goodsId
      * @return 商品规格列表
      */
-    public List<GoodsParamVO> getGoodsParam(@Param("goodsId") int goodsId);
+    public List<GoodsSpecVO> getGoodsSpec(@Param("goodsId") int goodsId);
 }

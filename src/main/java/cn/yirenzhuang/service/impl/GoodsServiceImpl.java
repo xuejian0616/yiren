@@ -2,20 +2,20 @@ package cn.yirenzhuang.service.impl;
 
 import cn.yirenzhuang.mapper.GoodsDescMapper;
 import cn.yirenzhuang.mapper.GoodsMapper;
-import cn.yirenzhuang.mapper.GoodsParamMapper;
-import cn.yirenzhuang.model.TBGoods;
+import cn.yirenzhuang.mapper.GoodsSpecMapper;
 import cn.yirenzhuang.model.TBGoodsDesc;
 import cn.yirenzhuang.model.VO.GoodsListVO;
-import cn.yirenzhuang.model.VO.GoodsParamVO;
+import cn.yirenzhuang.model.VO.GoodsSpecListVO;
+import cn.yirenzhuang.model.VO.GoodsSpecVO;
 import cn.yirenzhuang.model.VO.GoodsVO;
 import cn.yirenzhuang.service.GoodsService;
+import io.swagger.annotations.ApiModelProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 public class GoodsServiceImpl implements GoodsService {
@@ -25,7 +25,7 @@ public class GoodsServiceImpl implements GoodsService {
     GoodsMapper goodsMapper;
 
     @Autowired
-    GoodsParamMapper goodsParamMapper;
+    GoodsSpecMapper goodsParamMapper;
 
     @Autowired
     GoodsDescMapper goodsDescMapper;
@@ -40,6 +40,29 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     /**
+     * 根据商品id查询商品规格列表
+     * @param goodsId
+     * @return 规格列表
+     */
+    @Override
+    public GoodsSpecListVO getGoodsSpec(int goodsId){
+        GoodsSpecListVO goodsSpecListVO = new GoodsSpecListVO();
+        List<GoodsSpecVO> goodsSpecList = goodsParamMapper.getGoodsSpec(goodsId);
+
+        Set<String> norms = new HashSet<>();
+        Set<String> size = new HashSet<>();
+        for(GoodsSpecVO goodsSpec:goodsSpecList){
+            norms.add(goodsSpec.getNorm());
+            size.add(goodsSpec.getSize());
+        }
+        goodsSpecListVO.setNorms(norms);
+        goodsSpecListVO.setSizes(size);
+
+        goodsSpecListVO.setGoodsSpec(goodsSpecList);
+        return goodsSpecListVO;
+    }
+
+    /**
      * 根据商品id获取商品详情
      * @param goodsId
      * @return 商品详情
@@ -49,8 +72,26 @@ public class GoodsServiceImpl implements GoodsService {
         GoodsVO goodsVO = goodsMapper.getGoodsInfo(goodsId);
 
         if(!Objects.isNull(goodsVO)){
-            List<GoodsParamVO> goodsParams = goodsParamMapper.getGoodsParam(goodsId);
-            goodsVO.setGoodsParams(goodsParams);
+//            List<GoodsSpecVO> goodsSpec = goodsParamMapper.getGoodsSpec(goodsId);
+//            goodsVO.setGoodsSpec(goodsSpec);
+
+            List<String> imges = new ArrayList<>();
+            if(!Objects.isNull(goodsVO.getPicOne())){
+                imges.add(goodsVO.getPicOne());
+            }
+            if(!Objects.isNull(goodsVO.getPicTwo())){
+                imges.add(goodsVO.getPicTwo());
+            }
+            if(!Objects.isNull(goodsVO.getPicThree())){
+                imges.add(goodsVO.getPicThree());
+            }
+            if(!Objects.isNull(goodsVO.getPicFour())){
+                imges.add(goodsVO.getPicFour());
+            }
+            if(!Objects.isNull(goodsVO.getPicFive())){
+                imges.add(goodsVO.getPicFive());
+            }
+            goodsVO.setImages(imges);
 
             TBGoodsDesc goodsDesc = new TBGoodsDesc();
             goodsDesc.setGoodsId(goodsId);

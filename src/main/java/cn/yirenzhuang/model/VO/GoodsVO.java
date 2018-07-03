@@ -3,9 +3,6 @@ package cn.yirenzhuang.model.VO;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Table;
-import java.util.Date;
 import java.util.List;
 
 @Data
@@ -51,7 +48,9 @@ public class GoodsVO {
   @ApiModelProperty(value = "三级类目")
   private String thirdCid;
   @ApiModelProperty(value = "商品规格列表")
-  private List<GoodsParamVO> goodsParams;
+  private List<GoodsSpecVO> goodsSpec;
+  @ApiModelProperty(value = "商品规格列表")
+  private List<String> images;
   @ApiModelProperty(value = "商品详情")
   private String goodsDesc;
 }

@@ -1,7 +1,9 @@
 package cn.yirenzhuang.service;
 
 import cn.yirenzhuang.model.VO.GoodsListVO;
+import cn.yirenzhuang.model.VO.GoodsSpecListVO;
 import cn.yirenzhuang.model.VO.GoodsVO;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -27,6 +29,13 @@ public interface GoodsService {
      * @return 商品详情
      */
     public GoodsVO getGoodsInfo(int goodsId);
+
+    /**
+     * 根据商品id获取商品规格
+     * @param goodsId
+     * @return 商品规格
+     */
+    public GoodsSpecListVO getGoodsSpec(int goodsId);
 
     /**
      * 获取销量前十的商品列表
