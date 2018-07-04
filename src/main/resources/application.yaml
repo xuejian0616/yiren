@@ -2,17 +2,17 @@ server:
   port: 80
 spring:
   redis:
-      host: localhost
+      host: yirenzhuang.top
       port: 6379
       password: 8txCAGCdFlMVWg02wszP
       timeout: 300
-      database: 11
+      database: 0
       pool:
         max-idle: 10
         max-wait: 5000
         max-active: 200
   datasource:
-    url: jdbc:mysql://localhost:3306/yiren?useSSL=false&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&allowMultiQueries=true&rewriteBatchedStatements=true
+    url: jdbc:mysql://yirenzhuang.top:3306/yirenzhuang?useSSL=false&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&allowMultiQueries=true&rewriteBatchedStatements=true
     username: root
     password: 5VJSkwZ0Bk#A
     driverClassName: com.mysql.jdbc.Driver
@@ -52,3 +52,7 @@ mapper:
   mappers: cn.yirenzhuang.common.mapper.BaseMapper
   not-empty: false
   identity: MYSQL
+
+
+product:
+  imguri: https://hmres.huimin100.cn/
