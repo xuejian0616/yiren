@@ -24,13 +24,16 @@ public class IDataSourceProperties {
     private int timeBetweenEvictionRunsMillis;
     private int minEvictableIdleTimeMillis;
     private String validationQuery;
+    private int queryTimeoutSecond;
     private boolean testWhileIdle;
-    private boolean testOnBorrow;
+    // private boolean testOnBorrow =true;
     private boolean testOnReturn;
     private boolean poolPreparedStatements;
     private int maxPoolPreparedStatementPerConnectionSize;
     private String filters;
     private String connectionProperties;
-    private int removeAbandonedTimeout;
+    // private int removeAbandonedTimeout;
     private boolean removeAbandoned;
+    private boolean isOpenSlow;
+    private int querySlowlyMiles;
 }
