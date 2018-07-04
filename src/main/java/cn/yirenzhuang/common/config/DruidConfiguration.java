@@ -33,17 +33,18 @@ public class DruidConfiguration {
         datasource.setMinEvictableIdleTimeMillis(dataSourceProperties.getMinEvictableIdleTimeMillis());
         datasource.setValidationQuery(dataSourceProperties.getValidationQuery());
         datasource.setTestWhileIdle(dataSourceProperties.isTestWhileIdle());
-        datasource.setTestOnBorrow(dataSourceProperties.isTestOnBorrow());
+// datasource.setTestOnBorrow(dataSourceProperties.isTestOnBorrow());
         datasource.setTestOnReturn(dataSourceProperties.isTestOnReturn());
         datasource.setPoolPreparedStatements(dataSourceProperties.isPoolPreparedStatements());
         datasource.setMaxPoolPreparedStatementPerConnectionSize(dataSourceProperties.getMaxPoolPreparedStatementPerConnectionSize());
+        datasource.setQueryTimeout(dataSourceProperties.getQueryTimeoutSecond());
         try {
             datasource.setFilters(dataSourceProperties.getFilters());
         } catch (SQLException e) {
             System.err.println("druid configuration initialization filter: " + e);
         }
-        datasource.setRemoveAbandonedTimeout(dataSourceProperties.getRemoveAbandonedTimeout());
-        datasource.setRemoveAbandoned(dataSourceProperties.isRemoveAbandoned());
+// datasource.setRemoveAbandonedTimeout(dataSourceProperties.getRemoveAbandonedTimeout());
+// datasource.setRemoveAbandoned(dataSourceProperties.isRemoveAbandoned());
         datasource.setConnectionProperties(dataSourceProperties.getConnectionProperties());
         return datasource;
     }
