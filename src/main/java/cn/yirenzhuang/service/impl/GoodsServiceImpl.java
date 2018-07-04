@@ -49,11 +49,26 @@ public class GoodsServiceImpl implements GoodsService {
         GoodsSpecListVO goodsSpecListVO = new GoodsSpecListVO();
         List<GoodsSpecVO> goodsSpecList = goodsParamMapper.getGoodsSpec(goodsId);
 
-        Set<String> norms = new HashSet<>();
-        Set<String> size = new HashSet<>();
+        List<Map<String,String>> norms = new ArrayList<>();
+        List<Map<String,String>> size = new ArrayList<>();
+        Set<String> addSpce = new HashSet<>();
         for(GoodsSpecVO goodsSpec:goodsSpecList){
-            norms.add(goodsSpec.getNorm());
-            size.add(goodsSpec.getSize());
+
+            if(!addSpce.contains(goodsSpec.getNorm())){
+                Map<String,String> normsMap = new HashMap<>();
+                normsMap.put("norm",goodsSpec.getNorm());
+                normsMap.put("isSelect","");
+                norms.add(normsMap);
+                addSpce.add(goodsSpec.getNorm());
+            }
+
+            if(!addSpce.contains(goodsSpec.getSize())){
+                Map<String,String> sizeMap = new HashMap<>();
+                sizeMap.put("size",goodsSpec.getSize());
+                sizeMap.put("isSelect","");
+                size.add(sizeMap);
+                addSpce.add(goodsSpec.getSize());
+            }
         }
         goodsSpecListVO.setNorms(norms);
         goodsSpecListVO.setSizes(size);
